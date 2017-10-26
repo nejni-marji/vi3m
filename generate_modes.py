@@ -8,7 +8,14 @@ from config import configs
 #
 
 def generate_config(config):
-	p_key, p_sym, binds = config['key'], config['sym'], config['binds']
+	try:
+		p_key = '$mod+%s' % config['mod']
+		p_sym = config['mod'].upper()
+		binds = config['binds']
+	except:
+		p_key = config['key']
+		p_sym = config['sym']
+		binds = config['binds']
 	chains = list(binds)
 	modes = []
 
