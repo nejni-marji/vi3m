@@ -48,6 +48,7 @@ def generate_config(config):
 		print('mode "%s-" {' % (p_sym))
 		print('\tbindsym Return mode "default"')
 		print('\tbindsym Escape mode "default"')
+		print('\tbindsym %s mode "default"' % (p_key))
 
 		elems = [i for i in chains if len(i) == 1]
 		elems.sort()
@@ -72,6 +73,7 @@ def generate_config(config):
 		print('mode "%s-%s" {' % (p_sym, mode))
 		print('\tbindsym Return mode "default"')
 		print('\tbindsym Escape mode "default"')
+		print('\tbindsym %s mode "%s-"' % (p_key, p_sym))
 		for elem in elems:
 			key = elem.replace(mode, '', 1)
 			if not key == key.lower():
