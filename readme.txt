@@ -1,4 +1,5 @@
 Put all of these files in ~/.i3/vi3m/.
+Copy examples/config.py to the vi3m main directory.
 Change your reload binding to:
 exec ~/.i3/vi3m/vi3m.sh; reload
 And your restart binding to:
