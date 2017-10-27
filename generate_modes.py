@@ -74,7 +74,7 @@ def generate_config(config):
 		print('mode "%s-%s" {' % (p_sym, mode))
 		print('\tbindsym Return mode "default"')
 		print('\tbindsym Escape mode "default"')
-		print('\tbindsym %s mode "%s-"' % (p_key, p_sym))
+		print('\tbindsym %s mode "default"' % (p_key))
 		print('\tbindsym BackSpace mode "%s-%s"' % (p_sym, mode[:-1]))
 		for elem in elems:
 			key = elem.replace(mode, '', 1)
