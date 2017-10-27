@@ -17,4 +17,3 @@ fi
 	cat "$I3"/preconfig;
 	"$I3"/vi3m/generate_modes.py
 } > "$I3"/config
-i3-msg reload
