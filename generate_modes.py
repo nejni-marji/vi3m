@@ -44,7 +44,7 @@ def generate_config(config):
 		pass
 
 	def gen_prefix_mode():
-		print('bindsym %s exec ~/.i3/show_bar.sh; mode "%s-"' % (p_key, p_sym))
+		print('bindsym %s mode "%s-"' % (p_key, p_sym))
 		print('mode "%s-" {' % (p_sym))
 		print('\tbindsym Return mode "default"')
 		print('\tbindsym Escape mode "default"')
