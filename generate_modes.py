@@ -19,14 +19,14 @@ def generate_config(config):
 	chains = list(binds)
 	modes = []
 
-	def get_modes(mode):
-		if len(mode) > 1:
-			mode = mode[:-1]
-			modes.append(mode.lower())
-			return get_modes(mode)
+	def get_modes(chain):
+		if len(chain) > 1:
+			chain = chain[:-1]
+			modes.append(chain.lower())
+			return get_modes(chain)
 
-	for mode in list(chains):
-		get_modes(mode)
+	for chain in list(chains):
+		get_modes(chain)
 	modes = list(set(modes))
 	modes.sort()
 
