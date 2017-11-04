@@ -25,7 +25,7 @@ def generate_config(config):
 			modes.append(chain.lower())
 			return get_modes(chain)
 
-	for chain in list(chains):
+	for chain in chains:
 		get_modes(chain)
 	modes = list(set(modes))
 	modes.sort()
