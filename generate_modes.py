@@ -10,7 +10,7 @@ from config import configs
 def generate_config(config):
 	try:
 		p_key = '$mod+%s' % config['mod']
-		p_sym = config['mod'].upper()
+		p_sym = config['mod'][0].upper()
 		binds = config['binds']
 	except:
 		p_key = config['key']
