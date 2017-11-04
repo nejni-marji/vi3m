@@ -11,11 +11,10 @@ def generate_config(config):
 	try:
 		p_key = '$mod+%s' % config['mod']
 		p_sym = config['mod'][0].upper()
-		binds = config['binds']
 	except:
 		p_key = config['key']
 		p_sym = config['sym']
-		binds = config['binds']
+	binds = config['binds']
 
 	chains = list(binds)
 	modes = []
