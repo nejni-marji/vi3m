@@ -13,7 +13,12 @@ EOM
 exit
 fi
 
+cp "$I3"/config "$I3"/config.bak
 {
 	cat "$I3"/preconfig;
 	"$I3"/vi3m/generate_modes.py
-} > "$I3"/config
+} > "$I3"/config || {
+	espeak 'i3 error' >/dev/null 2>/dev/null
+	# change that to a nagbar #TODO
+	cp "$I3"/config.bak "$I3"/config
+}

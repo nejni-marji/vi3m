@@ -2,33 +2,33 @@
 from sys import argv
 from config import configs
 
-#
-# WARNING! This script does not check for configuration errors!
-#
-
-def generate_config(config):
-	try:
-		p_key = '$mod+%s' % config['mod']
-		p_sym = config['mod'][0].upper()
-	except:
-		p_key = config['key']
-		p_sym = config['sym']
+def validate_config(config):
 	binds = config['binds']
 
 	chains = list(binds)
 	modes = []
+	errors = []
 
 	def get_modes(chain):
 		if len(chain) > 1:
 			chain = chain[:-1]
-			modes.append(chain.lower())
+			modes.append(chain)
 			return get_modes(chain)
 
 	for chain in chains:
+		mode = chain[:-1]
+		if not chain.isalnum():
+			errors.append([1, chain])
+		if not mode == mode.lower():
+			errors.append([2, chain])
 		get_modes(chain)
 
 	modes = list(set(modes))
 	modes.sort()
+
+	overlap = list(set(chains) & set(modes))
+	if overlap:
+		errors.append([3, overlap])
 
 	def debug():
 		print(binds)
@@ -42,6 +42,34 @@ def generate_config(config):
 			return None
 	except:
 		pass
+
+	if errors:
+		handle_errors(errors)
+	return [chains, modes]
+
+def handle_errors(errors):
+	types = {
+		1: 'non-alphanumeric chars',
+		2: 'uppercase char before final char',
+		3: 'overlapped mapping(s)',
+	}
+	for error in errors:
+		msg = 'error: %s: ' % types[error[0]]
+		err = str(error[1])
+		print(msg + err)
+		print(' ' * len(msg) + '^' * len(err))
+	exit(1)
+
+def generate_config(config):
+	try:
+		p_key = '$mod+%s' % config['mod']
+		p_sym = config['mod'][0].upper()
+	except:
+		p_key = config['key']
+		p_sym = config['sym']
+	binds = config['binds']
+
+	chains, modes = validate_config(config)
 
 	def gen_prefix_mode():
 		print('bindsym %s mode "%s-"' % (p_key, p_sym))
