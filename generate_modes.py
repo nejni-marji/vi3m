@@ -16,6 +16,7 @@ def generate_config(config):
 		p_key = config['key']
 		p_sym = config['sym']
 		binds = config['binds']
+
 	chains = list(binds)
 	modes = []
 
@@ -27,6 +28,7 @@ def generate_config(config):
 
 	for chain in chains:
 		get_modes(chain)
+
 	modes = list(set(modes))
 	modes.sort()
 
