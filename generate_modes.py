@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 from sys import argv
-from os.path import dirname
 from config import configs
 
 #
