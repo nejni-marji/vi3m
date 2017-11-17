@@ -76,6 +76,8 @@ def generate_config(config):
 		print('mode "%s-" {' % (p_sym))
 		print('\tbindsym Return mode "default"')
 		print('\tbindsym Escape mode "default"')
+		print('\tbindsym Control+c mode "default"')
+		print('\tbindsym Control+bracketleft mode "default"')
 		print('\tbindsym %s mode "default"' % (p_key))
 		print('\tbindsym BackSpace mode "default"')
 
@@ -102,6 +104,8 @@ def generate_config(config):
 		print('mode "%s-%s" {' % (p_sym, mode))
 		print('\tbindsym Return mode "default"')
 		print('\tbindsym Escape mode "default"')
+		print('\tbindsym Control+c mode "default"')
+		print('\tbindsym Control+bracketleft mode "default"')
 		print('\tbindsym %s mode "default"' % (p_key))
 		print('\tbindsym BackSpace mode "%s-%s"' % (p_sym, mode[:-1]))
 		for elem in elems:
