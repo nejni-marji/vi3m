@@ -39,7 +39,7 @@ def validate_config(config):
 	try:
 		if argv[1] in ['d', 'debug']:
 			debug()
-			return None
+			exit()
 	except:
 		pass
 
