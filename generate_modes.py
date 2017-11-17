@@ -71,13 +71,16 @@ def generate_config(config):
 
 	chains, modes = validate_config(config)
 
-	def gen_prefix_mode():
-		print('bindsym %s mode "%s-"' % (p_key, p_sym))
-		print('mode "%s-" {' % (p_sym))
+	def gen_mode_exits():
 		print('\tbindsym Return mode "default"')
 		print('\tbindsym Escape mode "default"')
 		print('\tbindsym Control+c mode "default"')
 		print('\tbindsym Control+bracketleft mode "default"')
+
+	def gen_prefix_mode():
+		print('bindsym %s mode "%s-"' % (p_key, p_sym))
+		print('mode "%s-" {' % (p_sym))
+		gen_mode_exits()
 		print('\tbindsym %s mode "default"' % (p_key))
 		print('\tbindsym BackSpace mode "default"')
 
@@ -102,10 +105,7 @@ def generate_config(config):
 		elems = [i for i in chains + modes if mode == i[:-1]]
 		elems.sort()
 		print('mode "%s-%s" {' % (p_sym, mode))
-		print('\tbindsym Return mode "default"')
-		print('\tbindsym Escape mode "default"')
-		print('\tbindsym Control+c mode "default"')
-		print('\tbindsym Control+bracketleft mode "default"')
+		gen_mode_exits()
 		print('\tbindsym %s mode "default"' % (p_key))
 		print('\tbindsym BackSpace mode "%s-%s"' % (p_sym, mode[:-1]))
 		for elem in elems:
