@@ -26,9 +26,10 @@ cat << EOM
 Something has gone wrong.
 Your i3 config does not have the vi3m verification line, but your preconfig
 exists. This script will absolutely never overwrite your i3 preconfig, so that
-your i3 config data will never completely disappear. As a result, you'll have
-to look at your i3 config and preconfig and resolve the issue manually. Most
-likely, if you move the preconfig out of your i3 directory, it should resolve.
+your i3 config data will never completely disappear. Chances are, you
+accidentally did something to your i3 config to cause the vi3m verification to
+disappear from it, and if so, moving the i3 config out of the i3 directory
+and rerunning this script should fix the problem.
 EOM
 [[ $TERM == dumb ]] && i3-nagbar -m 'There is an issue with your vi3m setup. Please run ~/.i3/vi3m/vi3m.sh to see why.'
 exit 1
