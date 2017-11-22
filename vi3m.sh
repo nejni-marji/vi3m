@@ -7,9 +7,23 @@ vi3m_conf=$?
 [[ -f $DIR/preconfig ]]
 vi3m_preconf=$?
 
+grep -E '^\s*bindsym [^ ]+ mode' $DIR/preconfig
+vi3m_modes=$?
+
 #echo '0 = yes, 1 = no'
 #echo "config has vi3m line? $vi3m_conf"
 #echo "preconf exist? $vi3m_preconf"
+
+if [[ $vi3m_modes == 0 ]]; then
+cat << EOM
+Something has gone wrong.
+Your i3 config contains modes, which will cause vi3m normal mode to break. To
+allow vi3m to work, comment out all the lines related to modes. Eventually I
+might get around to adding proper handling or something, but until then, just
+deal with it.
+EOM
+exit 1
+fi
 
 if [[ $vi3m_conf == 0 ]] && [[ $vi3m_preconf == 1 ]]; then
 cat << EOM
