@@ -41,7 +41,7 @@ fi
 cp $DIR/config $DIR/config.bak
 {
 	cat $DIR/preconfig \
-	| perl -pe 's#^(\s*)bindsym ([^ ]+) (reload|restart)$#\1bindsym \2 exec --no-startup-id ~/.i3/vi3m/vi3m.sh && i3-msg \3#'
+	| perl -pe 's#^(\s*bindsym [^ ]+) (reload|restart)$#\1 exec --no-startup-id ~/.i3/vi3m/vi3m.sh && i3-msg \2#'
 	$DIR/vi3m/generate_modes.py
 } > $DIR/config || {
 	i3-nagbar -t error -m 'You have errors in your vi3m/config.py. Reverting to backup config.' &
