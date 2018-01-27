@@ -27,7 +27,7 @@ def R(cmd): return 'remote %s' % cmd
 # This functions basically like a goto.
 def C(wm_class): return '[class="%s"] focus' % wm_class
 
-binds: {
+binds = {
 	'af': E('firefox'),
 	'abcd': E('i3-sensible-term'),
 	'ap': E('pavucontrol'),
