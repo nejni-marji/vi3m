@@ -63,7 +63,7 @@ def handle_errors(errors):
 def generate_config(config):
 	try:
 		p_key = '$mod+%s' % config['mod']
-		p_sym = config['mod'][0].upper()
+		p_sym = config['mod'][0].upper() + '-'
 	except:
 		p_key = config['key']
 		p_sym = config['sym']
@@ -78,8 +78,8 @@ def generate_config(config):
 		print('\tbindsym Control+bracketleft mode "default"')
 
 	def gen_prefix_mode():
-		print('bindsym %s mode "%s-"' % (p_key, p_sym))
-		print('mode "%s-" {' % (p_sym))
+		print('bindsym %s mode "%s"' % (p_key, p_sym))
+		print('mode "%s" {' % (p_sym))
 		gen_mode_exits()
 		print('\tbindsym %s mode "default"' % (p_key))
 		print('\tbindsym BackSpace mode "default"')
@@ -97,17 +97,17 @@ def generate_config(config):
 		for mode in modes:
 			key = mode.lower()
 			if len(key) == 1:
-				print('\tbindsym %s mode "%s-%s"' % (key, p_sym, mode))
+				print('\tbindsym %s mode "%s%s"' % (key, p_sym, mode))
 		print('}')
 		print()
 
 	def gen_mode(mode):
 		elems = [i for i in chains + modes if mode == i[:-1]]
 		elems.sort()
-		print('mode "%s-%s" {' % (p_sym, mode))
+		print('mode "%s%s" {' % (p_sym, mode))
 		gen_mode_exits()
 		print('\tbindsym %s mode "default"' % (p_key))
-		print('\tbindsym BackSpace mode "%s-%s"' % (p_sym, mode[:-1]))
+		print('\tbindsym BackSpace mode "%s%s"' % (p_sym, mode[:-1]))
 		for elem in elems:
 			key = elem.replace(mode, '', 1)
 			if not key == key.lower():
@@ -117,7 +117,7 @@ def generate_config(config):
 					% (key, binds[elem]
 				))
 			else:
-				print('\tbindsym %s mode "%s-%s"' % (key, p_sym, elem))
+				print('\tbindsym %s mode "%s%s"' % (key, p_sym, elem))
 		print('}')
 		print()
 
